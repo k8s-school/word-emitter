@@ -5,9 +5,8 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app: {{ include "word-emitter.name" . }}
+    app: word-emitter
   ports:
     - name: tcp
       protocol: TCP
       port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}

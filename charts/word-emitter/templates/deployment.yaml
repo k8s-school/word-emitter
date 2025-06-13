@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "word-emitter.fullname" . }}
+  name: word-emitter
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "word-emitter.name" . }}
+      app: word-emitter
   template:
     metadata:
       labels:
-        app: {{ include "word-emitter.name" . }}
+        app: word-emitter
     spec:
       containers:
         - name: word-emitter
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service.targetPort }}
+            - containerPort: {{ .Values.service.port }}
           resources: {{ toYaml .Values.resources | nindent 12 }}
