@@ -19,13 +19,14 @@ This project contains a simple Go-based TCP word emitter intended for use with S
 ### Deploy to Kubernetes
 
 ```bash
-helm install word-emitter ./charts/word-emitter -n spark-streaming --create-namespace
+helm install word-emitter ./charts/word-emitter -n word-emitter --create-namespace
 ```
 
-### Connect from Spark
+### Connect from other pod
 
-In your Spark Structured Streaming job:
-
-```python
-df = spark.readStream.format("socket").option("host", "word-emitter.spark-streaming.svc.cluster.local").option("port", 9999).load()
+In an ubuntu pod:
+```bash
+kubectl run -i --rm --tty shell --image=ubuntu -- bash
+apt update && apt install netcat-traditional
+nc word-emitter.word-emitter 9999
 ```
