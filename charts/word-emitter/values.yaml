@@ -1,12 +1,13 @@
 replicaCount: 1
 
 image:
-  repository: your-dockerhub/word-emitter
-  tag: latest
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
+  repository: gitlab-registry.in2p3.fr/astrolabsoftware/fink
+  name: demo-sparkmeasure
+  tag: "v0.0.1-rc1"
 
 service:
-  name: netcat
+  name: word-emitter
   port: 9999
   targetPort: 9999
   type: ClusterIP
