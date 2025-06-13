@@ -1,0 +1,14 @@
+replicaCount: 1
+
+image:
+  repository: your-dockerhub/word-emitter
+  tag: latest
+  pullPolicy: Always
+
+service:
+  name: netcat
+  port: 9999
+  targetPort: 9999
+  type: ClusterIP
+
+resources: {}
